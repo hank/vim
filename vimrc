@@ -1,17 +1,49 @@
+""" Programming
+" Set filetype stuff to on
+filetype on
+filetype plugin on
+filetype indent on
+syntax on
+let c_space_errors = 1
+" Set up detection of unwanted characters
+set listchars=tab:>-,trail:·
+
+""" Color stuff
 colorscheme torte
+hi MatchParen term=bold guibg=#444444 guifg=#eeeeee ctermbg=242
+
+""" Font stuff
+if has("mac")
+  let g:main_font = "Inconsolata:h13"
+  let g:small_font = "Inconsolata:h10"
+endif
+
+""" General
+set vb              " Visual Bell instead of sound
+set backspace=2     " All the nice backspaces
+set mousehide       " Hide mouse when typing
+set noignorecase
 set sw=4
 set ts=4
-set expandtab
+set expandtab       " Tabs suck
+set mouse=""        " Mice suck
 set nocp
+set autoindent
 set smartindent
-syntax on
-" Set <Leader>
-let mapleader=","
+let mapleader=","   " Set <Leader>
 " Turn off wrapping, and make horiz moves useful
 set nowrap
 set sidescroll=5
 set listchars+=precedes:<,extends:>
-set mouse=""
+set cpoptions+=ces$  " Show $ when doing things like cw
+set timeoutlen=500  " Half-second command timeout
+
+nnoremap K i<CR><Esc> " Remap for splitting lines
+
+set history=100     " Keep some stuff in the history
+" When the page starts to scroll, keep the cursor 8 lines from the top and 8
+" lines from the bottom
+set scrolloff=8
 
 " StatusLine
 " Custom color changes
@@ -46,3 +78,24 @@ helptags ~/.vim/doc
 runtime macros/matchit.vim
 " LycosaExplorer recommends this
 set hidden
+
+
+" set the forward slash to be the slash of note.  Backslashes suck
+set shellslash
+if has("unix")
+  set shell=zsh
+else
+  set shell=ksh.exe
+endif
+
+" Edit the vimrc file
+nnoremap <Leader>ev :e ~/.vim/vimrc<CR>
+
+""" Functions/Commands
+""" TODO: Beef this up at work
+function! MaybeRunMakeTags()
+  let root = FindCodeDirOrRoot()
+  if root != "/"
+    call system("cd " . root . "; ~/bin/maketags &")
+  endif
+endfunction

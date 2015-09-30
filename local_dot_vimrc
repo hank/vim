@@ -1,0 +1,4 @@
+" Source the real vimrc
+if filereadable($HOME . "/.vim/vimrc")
+  execute "source " . $HOME . "/.vim/vimrc"
+endif
