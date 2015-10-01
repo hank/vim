@@ -5,8 +5,10 @@ filetype plugin on
 filetype indent on
 syntax on
 let c_space_errors = 1
-" Set up detection of unwanted characters
-set listchars=tab:>-,trail:·
+" Set up artistic style
+autocmd BufNewFile,BufRead *.cpp set formatprg=astyle\ -A1s4pxkCNwYfUxek1jcxC80xL
+autocmd BufNewFile,BufRead *.c set formatprg=astyle\ -A1s4pwYfUxek1jcxC80xL
+autocmd BufNewFile,BufRead *.h set formatprg=astyle\ -A1s4pxkCNwYfUxek1jcxC80xL
 
 """ Color stuff
 colorscheme torte
@@ -19,9 +21,11 @@ if has("mac")
 endif
 
 """ General
+set guioptions-=r   " Disable scrollbar
 set vb              " Visual Bell instead of sound
 set backspace=2     " All the nice backspaces
 set mousehide       " Hide mouse when typing
+set wildmenu        " Super awesome tab completion
 set noignorecase
 set sw=4
 set ts=4
@@ -37,6 +41,9 @@ set sidescroll=5
 set listchars+=precedes:<,extends:>
 set cpoptions+=ces$  " Show $ when doing things like cw
 set timeoutlen=500  " Half-second command timeout
+nnoremap <Leader>L :bn<CR> " Next Buffer
+nnoremap <Leader>P :bp<CR> " Prev Buffer
+nnoremap <Leader>bd :bd<CR> " Del Buffer
 
 nnoremap K i<CR><Esc> " Remap for splitting lines
 
@@ -99,3 +106,23 @@ function! MaybeRunMakeTags()
     call system("cd " . root . "; ~/bin/maketags &")
   endif
 endfunction
+
+" Set up detection of unwanted characters
+set list
+set listchars=tab:>-,trail:·
+
+" Vim. Live it.
+nnoremap <up> <nop>
+inoremap <up> <nop>
+vnoremap <up> <nop>
+nnoremap <down> <nop>
+inoremap <down> <nop>
+vnoremap <down> <nop>
+nnoremap <left> <nop>
+inoremap <left> <nop>
+inoremap <right> <nop>
+nnoremap <right> <nop>
+vnoremap <left> <nop>
+vnoremap <right> <nop>
+" B A <start>
+" :: HJKL 4EVA. ::
