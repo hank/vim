@@ -41,8 +41,8 @@ set sidescroll=5
 set listchars+=precedes:<,extends:>
 set cpoptions+=ces$  " Show $ when doing things like cw
 set timeoutlen=500  " Half-second command timeout
-nnoremap <Leader>L :bn<CR> " Next Buffer
-nnoremap <Leader>P :bp<CR> " Prev Buffer
+nnoremap <Leader>a :bn<CR> " Next Buffer
+nnoremap <Leader>s :bp<CR> " Prev Buffer
 nnoremap <Leader>bd :bd<CR> " Del Buffer
 
 nnoremap K i<CR><Esc> " Remap for splitting lines
@@ -96,7 +96,8 @@ else
 endif
 
 " Edit the vimrc file
-nnoremap <Leader>ev :e ~/.vim/vimrc<CR>
+nnoremap <Leader>ev :e $MYVIMRC<CR>
+nnoremap <Leader>sv :source $MYVIMRC<CR>
 
 """ Functions/Commands
 """ TODO: Beef this up at work
@@ -126,3 +127,7 @@ vnoremap <left> <nop>
 vnoremap <right> <nop>
 " B A <start>
 " :: HJKL 4EVA. ::
+
+let NERDTreeHijackNetrw=1
+let NERDTreeMouseMode=0
+nnoremap <Leader>nt :NERDTree<CR>
