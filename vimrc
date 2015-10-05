@@ -43,7 +43,7 @@ set cpoptions+=ces$  " Show $ when doing things like cw
 set timeoutlen=500  " Half-second command timeout
 nnoremap <Leader>a :bn<CR> " Next Buffer
 nnoremap <Leader>s :bp<CR> " Prev Buffer
-nnoremap <Leader>bd :bd<CR> " Del Buffer
+nnoremap <Leader>bd :Bdelete<CR> " Del Buffer (bbye: Leave Window)
 
 nnoremap K i<CR><Esc> " Remap for splitting lines
 
@@ -96,8 +96,8 @@ else
 endif
 
 " Edit the vimrc file
-nnoremap <Leader>ev :e $MYVIMRC<CR>
-nnoremap <Leader>sv :source $MYVIMRC<CR>
+nnoremap <Leader>ev :e ~/.vim/vimrc<CR>
+nnoremap <Leader>sv :source ~/.vim/vimrc<CR>
 
 """ Functions/Commands
 """ TODO: Beef this up at work
