@@ -41,8 +41,9 @@ set sidescroll=5
 set listchars+=precedes:<,extends:>
 set cpoptions+=ces$  " Show $ when doing things like cw
 set timeoutlen=500  " Half-second command timeout
-nnoremap <Leader>a :bn<CR> " Next Buffer
-nnoremap <Leader>s :bp<CR> " Prev Buffer
+set number          " Let's use line number to speed up movement
+nnoremap <Leader>x :bn<CR> " Next Buffer
+nnoremap <Leader>z :bp<CR> " Prev Buffer
 nnoremap <Leader>bd :Bdelete<CR> " Del Buffer (bbye: Leave Window)
 
 nnoremap K i<CR><Esc> " Remap for splitting lines
