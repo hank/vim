@@ -42,6 +42,8 @@ set listchars+=precedes:<,extends:>
 set cpoptions+=ces$  " Show $ when doing things like cw
 set timeoutlen=500  " Half-second command timeout
 set number          " Let's use line number to speed up movement
+set relativenumber  " Relative numbering seems to be awesome!
+nnoremap Z         :w<CR>  " Just map Z to save files
 nnoremap <Leader>x :bn<CR> " Next Buffer
 nnoremap <Leader>z :bp<CR> " Prev Buffer
 nnoremap <Leader>bd :Bdelete<CR> " Del Buffer (bbye: Leave Window)
