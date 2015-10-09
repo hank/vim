@@ -29,6 +29,7 @@ set wildmenu        " Super awesome tab completion
 set noignorecase
 set sw=4
 set ts=4
+set softtabstop=4
 set expandtab       " Tabs suck
 set mouse=""        " Mice suck
 set nocp
@@ -43,12 +44,16 @@ set cpoptions+=ces$  " Show $ when doing things like cw
 set timeoutlen=500  " Half-second command timeout
 set number          " Let's use line number to speed up movement
 set relativenumber  " Relative numbering seems to be awesome!
-nnoremap Z         :w<CR>  " Just map Z to save files
-nnoremap <Leader>x :bn<CR> " Next Buffer
-nnoremap <Leader>z :bp<CR> " Prev Buffer
-nnoremap <Leader>bd :Bdelete<CR> " Del Buffer (bbye: Leave Window)
-
-nnoremap K i<CR><Esc> " Remap for splitting lines
+" Just map Z to save files
+nnoremap Z         :w<CR>
+" Next Buffer
+nnoremap <Leader>x :bn<CR>
+" Prev Buffer
+nnoremap <Leader>z :bp<CR>
+" Del Buffer (bbye: Leave Window)
+nnoremap <Leader>bd :Bdelete<CR>
+" Remap for splitting lines
+nnoremap K i<CR><Esc>
 
 set history=100     " Keep some stuff in the history
 " When the page starts to scroll, keep the cursor 8 lines from the top and 8
@@ -56,6 +61,7 @@ set history=100     " Keep some stuff in the history
 set scrolloff=8
 
 " StatusLine
+set laststatus=2
 " Custom color changes
 hi StatusLineFName ctermfg=0 ctermbg=14 guifg=White guibg=Black
 set stl=%#StatusLineFName# " todo highlight
@@ -134,3 +140,7 @@ vnoremap <right> <nop>
 let NERDTreeHijackNetrw=1
 let NERDTreeMouseMode=0
 nnoremap <Leader>nt :NERDTree<CR>
+
+" Syntastic
+let g:syntastic_c_remove_include_errors=1
+let g:syntastic_cpp_remove_include_errors=1
