@@ -9,6 +9,8 @@ let c_space_errors = 1
 autocmd BufNewFile,BufRead *.cpp set formatprg=astyle\ -A1s4pxkCNwYfUxek1jcxC80xL
 autocmd BufNewFile,BufRead *.c set formatprg=astyle\ -A1s4pwYfUxek1jcxC80xL
 autocmd BufNewFile,BufRead *.h set formatprg=astyle\ -A1s4pxkCNwYfUxek1jcxC80xL
+" Get rid of automatic comment insertion
+autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
 
 """ Color stuff
 colorscheme torte
@@ -54,6 +56,7 @@ nnoremap <Leader>z :bp<CR>
 nnoremap <Leader>bd :Bdelete<CR>
 " Remap for splitting lines
 nnoremap K i<CR><Esc>
+" Remap for window switching with TAB
 
 set history=100     " Keep some stuff in the history
 " When the page starts to scroll, keep the cursor 8 lines from the top and 8
