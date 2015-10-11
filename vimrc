@@ -1,3 +1,13 @@
+""" Encodings!
+scriptencoding utf-8
+set encoding=utf-8
+""" System settings
+if has("unix")
+  set shell=bash
+else
+  set shell=ksh.exe
+endif
+
 """ Programming
 " Set filetype stuff to on
 filetype on
@@ -63,7 +73,7 @@ set scrolloff=8
 " StatusLine
 set laststatus=2
 " Custom color changes
-hi StatusLineFName ctermfg=0 ctermbg=14 guifg=White guibg=Black
+hi StatusLineFName ctermfg=15 ctermbg=0 guifg=White guibg=Black
 set stl=%#StatusLineFName# " todo highlight
 set stl+=%t                " filename
 set stl+=%m                " edited?
@@ -78,8 +88,8 @@ set stl+=Col:%v            " Column
 set stl+=%=                " Right align
 set stl+=Buf:#%-2n         " Buf number
 set stl+=[%3b][0x%02B]     " Char codes
-hi StatusLine guibg=#222222 guifg=#AA66CC term=bold cterm=bold gui=bold
-hi StatusLineNC guibg=#555555 guifg=#AAAAAA term=bold cterm=bold gui=bold
+hi StatusLine ctermfg=5 ctermbg=0 guibg=#222222 guifg=#AA66CC term=bold cterm=bold gui=bold
+hi StatusLineNC ctermfg=7 ctermbg=0 guibg=#555555 guifg=#AAAAAA term=bold cterm=bold gui=bold
 
 " Highlight searches and set hi color
 set hlsearch
@@ -95,14 +105,6 @@ runtime macros/matchit.vim
 " LycosaExplorer recommends this
 set hidden
 
-
-" set the forward slash to be the slash of note.  Backslashes suck
-set shellslash
-if has("unix")
-  set shell=zsh
-else
-  set shell=ksh.exe
-endif
 
 " Edit the vimrc file
 nnoremap <Leader>ev :e ~/.vim/vimrc<CR>
@@ -144,3 +146,10 @@ nnoremap <Leader>nt :NERDTree<CR>
 " Syntastic
 let g:syntastic_c_remove_include_errors=1
 let g:syntastic_cpp_remove_include_errors=1
+if has("freebsd")
+  let g:syntastic_shell=bash
+endif
+
+" Ctrl-P
+" Use regex mode by default
+let g:ctrlp_regexp=1
