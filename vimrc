@@ -30,10 +30,18 @@ hi MatchParen term=bold guibg=#444444 guifg=#eeeeee ctermbg=242
 if has("mac")
   let g:main_font = "Inconsolata:h13"
   let g:small_font = "Inconsolata:h10"
+elseif has("win16") || has("win32")
+  set gfn=Source\ Code\ Pro:h11,Bitstream\ Vera\ Sans\ Mono:h11
+elseif has("linux")
+  set gfn=Source\ Code\ Pro:h11,Bitstream\ Vera\ Sans\ Mono:h11
+elseif has("unix")
+  set gfn=Monospace\ 11
 endif
 
 """ General
 set guioptions-=r   " Disable scrollbar
+set guioptions-=m   " Disable menubar
+set guioptions-=T   " Disable toolbar
 set vb              " Visual Bell instead of sound
 set backspace=2     " All the nice backspaces
 set mousehide       " Hide mouse when typing
