@@ -23,7 +23,9 @@ autocmd BufNewFile,BufRead *.h set formatprg=astyle\ -A1s4pxkCNwYfUxek1jcxC80xL
 autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
 
 """ Color stuff
-colorscheme torte
+if has("gui_running")
+    colorscheme torte
+endif
 hi MatchParen term=bold guibg=#444444 guifg=#eeeeee ctermbg=242
 
 """ Font stuff
