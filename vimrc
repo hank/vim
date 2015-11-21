@@ -115,9 +115,6 @@ set viminfo^=h
 helptags ~/.vim/doc
 " Enable match-it plugin to match all kinds of wonderful things
 runtime macros/matchit.vim
-" LycosaExplorer recommends this
-set hidden
-
 
 " Edit the vimrc file
 nnoremap <Leader>ev :e ~/.vim/vimrc<CR>
