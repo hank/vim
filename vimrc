@@ -1,3 +1,6 @@
+set nobackup       "no backup files
+set nowritebackup  "only in case you don't want a backup file while editing
+set noswapfile     "no swap files
 """ Encodings!
 scriptencoding utf-8
 set encoding=utf-8
@@ -34,7 +37,7 @@ if has("mac")
   let g:main_font = "Inconsolata:h13"
   let g:small_font = "Inconsolata:h10"
 elseif has("win16") || has("win32")
-  set gfn=Source\ Code\ Pro:h11,Bitstream\ Vera\ Sans\ Mono:h11
+  set gfn=Source\ Code\ Pro:h10,Bitstream\ Vera\ Sans\ Mono:h10
 elseif has("linux")
   set gfn=Source\ Code\ Pro:h11,Bitstream\ Vera\ Sans\ Mono:h11
 elseif has("unix")
@@ -113,13 +116,22 @@ nnoremap <CR> :nohlsearch<CR><CR>
 " Disable highlighting on startup
 set viminfo^=h
 " Turn on plugin docs
-helptags ~/.vim/doc
+if has("unix")
+    helptags ~/.vim/doc
+else
+    helptags ~/vimfiles/doc
+endif
 " Enable match-it plugin to match all kinds of wonderful things
 runtime macros/matchit.vim
 
 " Edit the vimrc file
-nnoremap <Leader>ev :e ~/.vim/vimrc<CR>
-nnoremap <Leader>sv :source ~/.vim/vimrc<CR>
+if has("unix")
+    nnoremap <Leader>ev :e ~/.vim/vimrc<CR>
+    nnoremap <Leader>sv :source ~/.vim/vimrc<CR>
+else
+    nnoremap <Leader>ev :e ~/vimfiles/vimrc<CR>
+    nnoremap <Leader>sv :source ~/vimfiles/vimrc<CR>
+endif
 
 """ Functions/Commands
 """ TODO: Beef this up at work
