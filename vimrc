@@ -118,7 +118,7 @@ set viminfo^=h
 " Turn on plugin docs
 if has("unix")
     helptags ~/.vim/doc
-else
+elseif has("win16") || has("win32")
     helptags ~/vimfiles/doc
 endif
 " Enable match-it plugin to match all kinds of wonderful things
@@ -126,9 +126,9 @@ runtime macros/matchit.vim
 
 " Edit the vimrc file
 if has("unix")
-    nnoremap <Leader>ev :e ~/.vim/vimrc<CR>
-    nnoremap <Leader>sv :source ~/.vim/vimrc<CR>
-else
+    nnoremap <Leader>ev :e $MYVIMRC<CR>
+    nnoremap <Leader>sv :source $MYVIMRC<CR>
+elseif has("win16") || has("win32")
     nnoremap <Leader>ev :e ~/vimfiles/vimrc<CR>
     nnoremap <Leader>sv :source ~/vimfiles/vimrc<CR>
 endif
