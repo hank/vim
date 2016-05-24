@@ -9,6 +9,8 @@ set encoding=utf-8
 """ System settings
 if has("unix")
   set shell=bash
+elseif has("win16") || has("win32")
+  " Leave shell alone!
 else
   set shell=ksh.exe
 endif
