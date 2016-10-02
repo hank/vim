@@ -173,6 +173,7 @@ vnoremap <right> <nop>
 " Syntastic
 let g:syntastic_c_remove_include_errors = 1
 let g:syntastic_c_checkers = ["clang_check", "clang_tidy"]
+let g:syntastic_python_checkers = ["flake8"]
 let g:syntastic_cpp_remove_include_errors = 1
 if has("freebsd")
   let g:syntastic_shell = bash

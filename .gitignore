@@ -1,4 +1,4 @@
-doc/tags
+tags
 .DS_Store
 *.pyc
 /.netrwhist
