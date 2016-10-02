@@ -1,0 +1,14 @@
+snippet if "if() {}"
+if(${1:condition})
+{
+	${0:/* Statements */}
+}
+endsnippet
+snippet gc "goto cleanup"
+goto cleanup;
+endsnippet
+snippet ifdef "#ifdef"
+#ifdef ${1:VAR}
+	${0:${VISUAL:\/* Then... *\/}}
+#endif /* $1 */
+endsnippet
