@@ -1,5 +1,10 @@
 """ Environment
-let $VIMHOME=expand('<sfile>:p:h:h')
+if has("win16") || has("win32")
+    " We start under vimfiles, so get the full path then the 2 parents
+    let $VIMHOME=expand('<sfile>:p:h:h')
+else
+    let $VIMHOME=$HOME
+endif
 """ Encodings!
 scriptencoding utf-8
 set encoding=utf-8
