@@ -132,10 +132,10 @@ nnoremap <CR> :nohlsearch<CR><CR>
 set viminfo^=h
 " Turn on plugin docs
 if has("win16") || has("win32")
-    helptags $VIMHOME/.vim/doc
+    helptags $VIMHOME/vimfiles/doc
     let $VIMDIR = $VIMHOME.'\vimfiles'
 else
-    helptags $VIMHOME/vimfiles/doc
+    helptags $VIMHOME/.vim/doc
     let $VIMDIR = $VIMHOME.'/.vim'
 endif
 " Enable match-it plugin to match all kinds of wonderful things
