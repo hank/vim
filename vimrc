@@ -1,3 +1,5 @@
+""" Environment
+let $VIMHOME=expand('<sfile>:p:h:h')
 """ Encodings!
 scriptencoding utf-8
 set encoding=utf-8
@@ -129,10 +131,12 @@ nnoremap <CR> :nohlsearch<CR><CR>
 " Disable highlighting on startup
 set viminfo^=h
 " Turn on plugin docs
-if has("unix")
-    helptags ~/.vim/doc
-elseif has("win16") || has("win32")
-    helptags ~/vimfiles/doc
+if has("win16") || has("win32")
+    helptags $VIMHOME/.vim/doc
+    let $VIMDIR = $VIMHOME.'\vimfiles'
+else
+    helptags $VIMHOME/vimfiles/doc
+    let $VIMDIR = $VIMHOME.'/.vim'
 endif
 " Enable match-it plugin to match all kinds of wonderful things
 runtime macros/matchit.vim
@@ -213,5 +217,18 @@ let g:rainbow_conf = {
 " YankRing
 " Min to save is 2 characters
 let g:yankring_min_element_length = 2
+let g:yankring_replace_n_pkey = '<m-p>'
+let g:yankring_replace_n_nkey = '<m-n>'
 " Manage the numbered yank registers
 let g:yankring_manage_numbered_reg = 1
+
+" Ultisnips / SuperTab
+let g:UltiSnipsSnippetsDir = $VIMDIR.'/MyUltiSnips'
+let g:UltiSnipsSnippetDirectories = ['UltiSnips', $VIMDIR.'/MyUltiSnips']
+let g:UltiSnipsEnableSnipMate = 0
+nnoremap <Leader>us :UltiSnipsEdit<CR>
+let g:SuperTabDefaultCompletionType = '<C-n>'
+" better key bindings for UltiSnipsExpandTrigger
+let g:UltiSnipsExpandTrigger = "<tab>"
+let g:UltiSnipsJumpForwardTrigger = "<tab>"
+let g:UltiSnipsJumpBackwardTrigger = "<s-tab>"
