@@ -34,3 +34,18 @@
 [submodule "utils/git-archive-all"]
 	path = utils/git-archive-all
 	url = https://github.com/hank/git-archive-all.git
+[submodule "bundle/unimpaired"]
+	path = bundle/unimpaired
+	url = https://github.com/tpope/vim-unimpaired.git
+[submodule "bundle/rename"]
+	path = bundle/rename
+	url = https://github.com/sscherfke/rename.vim.git
+[submodule "bundle/vim-airline-themes"]
+	path = bundle/vim-airline-themes
+	url = https://github.com/vim-airline/vim-airline-themes.git
+[submodule "bundle/bbye"]
+	path = bundle/bbye
+	url = https://github.com/qiushihe/vim-bbye.git
+[submodule "bundle/tagbar"]
+	path = bundle/tagbar
+	url = https://github.com/majutsushi/tagbar
