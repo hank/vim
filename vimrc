@@ -7,14 +7,11 @@ else
     let $VIMHOME=$HOME
     let $VIMDIR = $VIMHOME.'/.vim'
 endif
+
 """ Encodings!
 scriptencoding utf-8
 set encoding=utf-8
-" Enable pathogen
-execute pathogen#infect()
-set nobackup       "no backup files
-set nowritebackup  "only in case you don't want a backup file while editing
-set noswapfile     "no swap files
+
 """ System settings
 if has("unix")
   set shell=bash
@@ -25,7 +22,6 @@ else
 endif
 let mapleader=","   " Set <Leader>
 
-""" Programming
 " Set filetype stuff to on
 filetype on
 filetype plugin indent on
@@ -38,6 +34,8 @@ au BufNewFile,BufRead *.h set formatprg=astyle\ -A1s4pxkCNwYfUxek1jcxC80xL
 au BufNewFile,BufRead */etc/nagios/*.cfg,*/nagios/etc/*.cfg,*sample-config/template-object/*.cfg{,.in},/var/lib/nagios/objects.cache set ft=nagios
 " Get rid of automatic comment insertion
 au FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
+" Whitespace
+autocmd BufWritePre * StripWhitespace
 
 """ Color stuff
 if has("gui_running")
@@ -46,27 +44,25 @@ endif
 hi MatchParen term=bold guibg=#444444 guifg=#eeeeee ctermbg=242
 
 """ General
-set guioptions-=r   " Disable scrollbar
-set guioptions-=m   " Disable menubar
-set guioptions-=T   " Disable toolbar
-set vb              " Visual Bell instead of sound
-set backspace=2     " All the nice backspaces
-set mousehide       " Hide mouse when typing
-set wildmenu        " Super awesome tab completion
-set wildcharm=<C-z> " Character used for popping menu in macros
-set noignorecase
-set sw=4
-set ts=4
-set softtabstop=4
-set expandtab       " Tabs suck
-set mouse=""        " Mice suck
-set nocp
-set autoindent
-set smartindent
-" Turn off wrapping, and make horiz moves useful
-set nowrap
-set sidescroll=5
-set listchars+=precedes:<,extends:>
+set nobackup                        " no backup files
+set nowritebackup                   " only in case you don't want a backup file while editing
+set noswapfile                      " no swap files
+set guioptions-=rmT                 " Disable scrollbar, menubar, toolbar
+set vb                              " Visual Bell instead of sound
+set backspace=indent,eol,start      " All the nice backspaces
+set mousehide                       " Hide mouse when typing
+set wildmenu                        " Super awesome tab completion
+set wildcharm=<C-z>                 " Character used for popping menu in macros
+set noignorecase                    " Respect case when searching
+set sw=4                            " Set shiftwidth (<< >>)
+set ts=4                            " Set tabstop
+set softtabstop=4                   " Size of tabs in INSERT mode
+set expandtab                       " Tabs suck
+set mouse=""                        " Mice suck
+set nocp                            " Compatibility sucks
+set autoindent                      " Copy indent from preceeding line
+set nowrap                          " Turn off wrapping
+set sidescroll=5                    " Make horiz moves useful
 set cpoptions+=ces$  " Show $ when doing things like cw
 set timeoutlen=500  " Half-second command timeout
 set number          " Let's use line number to speed up movement
@@ -76,7 +72,8 @@ if has("gui_running") && (has("win16") || has("win32"))
 endif
 " Set up detection of unwanted characters
 set list
-set listchars=tab:>-,trail:·
+set listchars=tab:>-                "
+set listchars+=precedes:<,extends:> " Show characters in first/last columns
 set history=100     " Keep some stuff in the history
 " When the page starts to scroll, keep the cursor 8 lines from the top and 8
 " lines from the bottom
@@ -95,17 +92,18 @@ endif
 " Enable match-it plugin to match all kinds of wonderful things
 runtime macros/matchit.vim
 
-" Ctrl-P
-" Use regex mode by default
-" let g:ctrlp_regexp = 1
-
-" WebDevIcons
-let g:webdevicons_enable = 1
+" Enable pathogen
+execute pathogen#infect()
 
 """ Source modular configs
 for f in split(glob("$VIMDIR/config/*.vim"), '\n')
     exe 'source' f
 endfor
+
+""" Plugin-specific options
+
+" WebDevIcons
+let g:webdevicons_enable = 1
 
 " Tagbar
 if has("win16") || has("win32")

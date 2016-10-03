@@ -16,9 +16,6 @@
 [submodule "bundle/rainbow-parens-improved"]
 	path = bundle/rainbow-parens-improved
 	url = https://github.com/luochen1990/rainbow.git
-[submodule "bundle/YankRing"]
-	path = bundle/YankRing
-	url = https://github.com/vim-scripts/YankRing.vim.git
 [submodule "bundle/ultisnips"]
 	path = bundle/ultisnips
 	url = https://github.com/SirVer/ultisnips.git
@@ -49,3 +46,12 @@
 [submodule "bundle/vim-airline-themes"]
 	path = bundle/vim-airline-themes
 	url = https://github.com/vim-airline/vim-airline-themes.git
+[submodule "bundle/better-whitespace"]
+	path = bundle/better-whitespace
+	url = https://github.com/ntpeters/vim-better-whitespace.git
+[submodule "bundle/easy-align"]
+	path = bundle/easy-align
+	url = https://github.com/junegunn/vim-easy-align.git
+[submodule "bundle/yankstack"]
+	path = bundle/yankstack
+	url = https://github.com/maxbrunsfeld/vim-yankstack.git
