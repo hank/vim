@@ -47,7 +47,9 @@ hi MatchParen term=bold guibg=#444444 guifg=#eeeeee ctermbg=242
 set nobackup                   " no backup files
 set nowritebackup              " only in case you don't want a backup file while editing
 set noswapfile                 " no swap files
-set guioptions-=rmT            " Disable scrollbar, menubar, toolbar
+set guioptions-=r              " Disable scrollbar, menubar, toolbar
+set guioptions-=m
+set guioptions-=T
 set vb                         " Visual Bell instead of sound
 set backspace=indent,eol,start " All the nice backspaces
 set mousehide                  " Hide mouse when typing

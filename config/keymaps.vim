@@ -54,6 +54,10 @@ noremap <silent> ]q :call WrapCommand('down', 'c')<CR>
 noremap <silent> [l :call WrapCommand('up', 'l')<CR>
 noremap <silent> ]l :call WrapCommand('down', 'l')<CR>
 
+" Chronological undo
+nnoremap [u g-
+nnoremap ]u g+
+
 " Edit relevant ultisnip
 nnoremap <Leader>us :UltiSnipsEdit<CR>
 
@@ -62,3 +66,8 @@ nnoremap <Leader>us :UltiSnipsEdit<CR>
 xmap ga <Plug>(EasyAlign)
 " Start interactive EasyAlign for a motion/text object (e.g. gaip)
 nmap ga <Plug>(EasyAlign)
+
+" Lorem Ipsum
+" Generate a paragraph of it (see definition in fake.vim
+" Then paste it and reformat it
+nnoremap <Leader>fg "=fake#gen("paragraph")<CR>pgqq

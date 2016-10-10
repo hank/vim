@@ -33,7 +33,7 @@
 	url = https://github.com/hank/git-archive-all.git
 [submodule "bundle/unimpaired"]
 	path = bundle/unimpaired
-	url = https://github.com/tpope/vim-unimpaired.git
+	url = https://github.com/hank/vim-unimpaired.git
 [submodule "bundle/rename"]
 	path = bundle/rename
 	url = https://github.com/sscherfke/rename.vim.git
@@ -58,3 +58,6 @@
 [submodule "bundle/fontsize"]
 	path = bundle/fontsize
 	url = https://github.com/drmikehenry/vim-fontsize.git
+[submodule "bundle/fake"]
+	path = bundle/fake
+	url = https://github.com/tkhren/vim-fake.git
