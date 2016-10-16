@@ -31,6 +31,9 @@
 [submodule "bundle/unimpaired"]
 	path = bundle/unimpaired
 	url = https://github.com/hank/vim-unimpaired.git
+[submodule "bundle/vim-createcvar"]
+	path = bundle/vim-createcvar
+	url = https://github.com/hank/vim-createcvar.git
 [submodule "bundle/rename"]
 	path = bundle/rename
 	url = https://github.com/sscherfke/rename.vim.git

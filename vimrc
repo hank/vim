@@ -28,12 +28,10 @@ filetype plugin indent on
 syntax on
 let c_space_errors = 1
 " Set up artistic style
-au BufNewFile,BufRead *.cpp set formatprg=astyle\ -A1s4pxkCNwYfUxek1jcxC80xL
-au BufNewFile,BufRead *.c set formatprg=astyle\ -A1s4pwYfUxek1jcxC80xL
-au BufNewFile,BufRead *.h set formatprg=astyle\ -A1s4pxkCNwYfUxek1jcxC80xL
+" au BufNewFile,BufRead *.cpp set formatprg=astyle\ -A1s4pxkCNwYfUxek1jcxC80xL
+" au BufNewFile,BufRead *.c set formatprg=astyle\ -A1s4pwYfUxek1jcxC80xL
+" au BufNewFile,BufRead *.h set formatprg=astyle\ -A1s4pxkCNwYfUxek1jcxC80xL
 au BufNewFile,BufRead */etc/nagios/*.cfg,*/nagios/etc/*.cfg,*sample-config/template-object/*.cfg{,.in},/var/lib/nagios/objects.cache set ft=nagios
-" Get rid of automatic comment insertion
-au FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
 " Whitespace
 autocmd BufWritePre * StripWhitespace
 
@@ -44,6 +42,7 @@ endif
 hi MatchParen term=bold guibg=#444444 guifg=#eeeeee ctermbg=242
 
 """ General
+set hidden                     " allow hiding of buffers without saving (sanity)
 set nobackup                   " no backup files
 set nowritebackup              " only in case you don't want a backup file while editing
 set noswapfile                 " no swap files
@@ -51,6 +50,7 @@ set guioptions-=r              " Disable scrollbar, menubar, toolbar
 set guioptions-=m
 set guioptions-=T
 set vb                         " Visual Bell instead of sound
+set lazyredraw                 " Don't redraw the screen when playing macros
 set backspace=indent,eol,start " All the nice backspaces
 set mousehide                  " Hide mouse when typing
 set wildmenu                   " Super awesome tab completion
@@ -80,6 +80,11 @@ set history=100                     " Keep some stuff in the history
 " When the page starts to scroll, keep the cursor 8 lines from the top and 8
 " lines from the bottom
 set scrolloff=8
+" Set up formatoptions
+set formatoptions+=tqc
+if v:version > 703
+    set formatoptions+=j
+endif
 " Highlight searches and set hi color
 set hlsearch
 hi Search guibg=Yellow

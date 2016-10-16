@@ -71,3 +71,7 @@ nmap ga <Plug>(EasyAlign)
 " Generate a paragraph of it (see definition in fake.vim
 " Then paste it and reformat it
 nnoremap <Leader>fg "=fake#gen("paragraph")<CR>pgqq
+
+" CreateCVar
+nnoremap <Leader>dv :call NewVarAtTopOfFunction()<CR>
+nnoremap <Leader>mv :call MoveVarToTopOfFunction()<CR>

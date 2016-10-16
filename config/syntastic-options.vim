@@ -1,6 +1,6 @@
 " Syntastic
-" Jump to first error only if it's an error
-let g:syntastic_auto_jump = 2
+" Never jump
+let g:syntastic_auto_jump = 0
 let g:syntastic_always_populate_loc_list = 1
 " C / C++
 " Disable system includes checks
