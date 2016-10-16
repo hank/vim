@@ -12,3 +12,9 @@ snippet ifdef "#ifdef"
 	${0:${VISUAL:\/* Then... *\/}}
 #endif /* $1 */
 endsnippet
+snippet "^inc" "#include local" rbA
+#include "$1"
+endsnippet
+snippet "^Inc" "#include global" rbA
+#include <$1>
+endsnippet
