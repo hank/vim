@@ -96,6 +96,9 @@ if has("win16") || has("win32")
 else
     helptags $VIMHOME/.vim/doc
 endif
+" Source tags from local sources
+set tags+="$VIMDIR/tags/**/tags"
+
 " Enable match-it plugin to match all kinds of wonderful things
 runtime macros/matchit.vim
 
@@ -111,7 +114,21 @@ endfor
 " WebDevIcons
 let g:webdevicons_enable = 1
 
-" Tagbar
+" ShowMarks
+" Remove silly marks
+let g:showmarks_include = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ.'`"
+highlight ShowMarksHLl guifg=white guibg=darkgreen
+highlight ShowMarksHLu guifg=white guibg=darkblue
+highlight ShowMarksHLo guifg=white guibg=purple
+" Change sign column hilight
+highlight SignColumn guibg=#204050
+
+" Set up cscope in Windows
 if has("win16") || has("win32")
-    let g:tagbar_ctags_bin = "$VIMDIR/utils/ctags.exe"
+    set csprg=$VIMDIR/utils/cscope.exe
 endif
+" Source CScope databases
+set nocscopeverbose
+for f in split(glob("$VIMDIR/tags/*.cscope"), '\n')
+    exe 'cscope add' f
+endfor

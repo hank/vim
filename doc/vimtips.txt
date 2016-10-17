@@ -1,13 +1,15 @@
 *vimtips.txt*	For Vim version 7.3.	Last change: 2015 October 8
 ================================================================================
 CONTENTS                                                      *vimtips-contents*
-0. Essentials ....... |vimtips-essentials|
-1. Searching ........ |vimtips-search|
-2. Substitution ..... |vimtips-substitution|
-3. Global command ... |vimtips-global|
-4. Editing........... |vimtips-editing|
-5. Exploring ........ |vimtips-exploring|
-6. Visual ........... |vimtips-visual|
+Essentials ....... |vimtips-essentials|
+Searching ........ |vimtips-search|
+Substitution ..... |vimtips-substitution|
+Global command ... |vimtips-global|
+Editing .......... |vimtips-editing|
+Exploring ........ |vimtips-exploring|
+Visual ........... |vimtips-visual|
+Ctags ............ |vimtips-ctags|
+CScope ........... |vimtips-cscope|
 
 ================================================================================
 Section 0: Essentials                                       *vimtips-essentials*
@@ -16,7 +18,7 @@ Moving around: h j k l C-u C-d C-f C-b U M L <numline>G
 >
     * # g* g#           : find word under cursor (<cword>) (forwards/backwards)
     %                   : match brackets {}[]()
-    .                   : repeat last modification 
+    .                   : repeat last modification
     @:                  : repeat last : command (then @@)
     matchit.vim         : % now matches tags <tr><td><script> <?php etc
     <C-N><C-P>          : word completion in insert mode
@@ -184,7 +186,7 @@ Find str but not on lines containing tongue:
 >
     ^\(.*tongue.*\)\@!.*nose.*$
     \v^((tongue)@!.)*nose((tongue)@!.)*$
-    .*nose.*\&^\%(\%(tongue\)\@!.\)*$ 
+    .*nose.*\&^\%(\%(tongue\)\@!.\)*$
     :v/tongue/s/nose/&/gic
     'a,'bs/extrascost//gc       : trick: restrict search to between markers (answer n)
 <
@@ -217,7 +219,7 @@ Deleting empty lines:
 Parse XML/SOAP:
 >
     %s#><\([^/]\)#>\r<\1#g      : split jumbled up XML file into one tag per line
-    %s/</\r&/g                  : simple split of html/xml/soap 
+    %s/</\r&/g                  : simple split of html/xml/soap
     :%s#<[^/]#\r&#gic           : simple split of html/xml/soap  but not closing tag
     :%s#<[^/]#\r&#gi            : parse on open xml tag
     :%s#\[\d\+\]#\r&#g          : parse on numbered array elements [1]
@@ -249,7 +251,7 @@ Memory:
 Substitute using a register:
 >
     :s/fred/<c-r>a/g            : sub "fred" with contents of register "a"
-    :s/fred/<c-r>asome_text<c-r>s/g  
+    :s/fred/<c-r>asome_text<c-r>s/g
     :s/fred/\=@a/g              : better alternative as register not displayed (not *)
 <
 Multiple commands on one line:
@@ -369,7 +371,7 @@ Examples:
 <
 Perform a substitute on every other line:
 >
-    :g/^/ if line('.')%2|s/^/zz / 
+    :g/^/ if line('.')%2|s/^/zz /
 <
 Match all lines containing "somestr" between markers a & b, then copy after line
 containing "otherstr":
@@ -391,7 +393,7 @@ Incrementing numbers in a numbered list:
 
 More:
 >
-    " storing glob results (note must use APPEND) you need to empty reg a first with qaq. 
+    " storing glob results (note must use APPEND) you need to empty reg a first with qaq.
     "save results to a register/paste buffer
     :g/fred/y A                 : append all lines fred to register a
     :g/fred/y A | :let @*=@a    : put into paste buffer
@@ -421,7 +423,7 @@ Best-Global-combined-with-substitute:
 
 Chain an external command
 >
-    :.g/^/ exe ".!sed 's/N/X/'" | s/I/Q/   
+    :.g/^/ exe ".!sed 's/N/X/'" | s/I/Q/
 <
 
 ================================================================================
@@ -503,7 +505,7 @@ Title Case A Line Or Selection (better):
 <
 Titlise a line:
 >
-    nmap ,t :s/.*/\L&/<bar>:s/\<./\u&/g<cr> 
+    nmap ,t :s/.*/\L&/<bar>:s/\<./\u&/g<cr>
 <
 Uppercase first letter of sentences:
 >
@@ -541,7 +543,7 @@ Section 5: Exploring                                         *vimtips-exploring*
     :args *.php                     : open list of files (you need this!)
     :lcd %:p:h                      : change to directory of current file
     :cd :h                      : change to directory of current file
-    :autocmd BufEnter * lcd %:p:h   : change to directory of current file 
+    :autocmd BufEnter * lcd %:p:h   : change to directory of current file
                                     : automatically (put in _vimrc)
 <
 
@@ -572,7 +574,7 @@ Maps are commands put onto keys, abbreviations expand typed text
 Following 4 maps enable text transfer between VIM sessions:
 >
     :map   <f7>   :'a,'bw! c:/aaa/x       : save text to file x
-    :map   <f8>   :r c:/aaa/x             : retrieve text 
+    :map   <f8>   :r c:/aaa/x             : retrieve text
     :map   <f11>  :.w! c:/aaa/xr<CR>      : store current line
     :map   <f12>  :r c:/aaa/xr<CR>        : retrieve current line
     :ab php          : list of abbreviations beginning php
@@ -597,7 +599,7 @@ display RGB colour under the cursor eg #445588:
 <
 List current mappings of all your function keys:
 >
-    :for i in range(1, 12) | execute("map <F".i.">") | endfor  
+    :for i in range(1, 12) | execute("map <F".i.">") | endfor
 <
 Using a register as a map (preload registers in .vimrc):
 >
@@ -608,9 +610,9 @@ Using a register as a map (preload registers in .vimrc):
 Get output from other commands (requires external programs):
 >
     :r!ls -R         : reads in output of ls
-    :put=glob('**')  : same as above                
-    :r !grep "^ebay" file.txt  : grepping in content  
-    :20,25 !rot13    : rot13 lines 20 to 25  
+    :put=glob('**')  : same as above
+    :r !grep "^ebay" file.txt  : grepping in content
+    :20,25 !rot13    : rot13 lines 20 to 25
     !!date           : same thing (but replaces/filters current line)
     " Sorting with external sort
     :%!sort -u       : use an external program to filter content
@@ -620,7 +622,7 @@ Get output from other commands (requires external programs):
     " Sorting with internal sort
     :sort /.*\%2v/   : sort all lines on second column
     " number lines  (linux or cygwin only)
-    :new | r!nl #                 
+    :new | r!nl #
 <
 ----------------------------------------
 Recording (BEST Feature of ALL):
@@ -668,7 +670,7 @@ Visual basics:
     <C-V>                           : enter VISUAL BLOCKWISE mode (remap on Windows to say C-Q
     gv                              : reselect last visual area (ultra)
     o                               : navigate visual area
-    "*y or "+y                      : yank visual area into paste buffer 
+    "*y or "+y                      : yank visual area into paste buffer
     V%                              : visualise what you match
     V}J                             : Join Visual block (great)
     V}gJ                            : Join Visual block w/o adding spaces
@@ -807,7 +809,7 @@ GVIM Difference Function (Brilliant)
     " complex diff parts of same file
     :1,2yank a | 7,8yank b
     :tabedit | put a | vnew | put b
-    :windo diffthis 
+    :windo diffthis
 <
 --------------------------------------------------------------------------------
 Vim traps
@@ -841,7 +843,7 @@ List your Registers
     :reg             : display contents of all registers
     :reg a           : display content of register a
     :reg 12a         : display content of registers 1,2 & a
-    "5p              : retrieve 5th "ring" 
+    "5p              : retrieve 5th "ring"
     "1p....          : retrieve numeric registers one by one
     :let @y='yy@"'   : pre-loading registers (put in .vimrc)
     qqq              : empty register "q"
@@ -1077,7 +1079,7 @@ All file completions grouped (for example main_c.c)
     main_<C-X><C-F>                   : include NAME of file in text (insert mode)
 <
 --------------------------------------------------------------------------------
-" Complex Vim
+Complex Vim
 >
     " swap two words
     :%s/\<\(on\|off\)\>/\=strpart("offon", 3 * ("off" == submatch(0)), 3)/g
@@ -1112,7 +1114,7 @@ VIM has internal grep
     " Force syntax automatically (for a file with non-standard extension)
     au BufRead,BufNewFile */Content.IE?/* setfiletype html
     " make cursor standout against highlighted text for vim terminal (linux)
-    :highlight search term=reverse ctermbg=5  
+    :highlight search term=reverse ctermbg=5
     :highlight Normal guibg=white     : restore white background
 <
 --------------------------------------------------------------------------------
@@ -1236,7 +1238,7 @@ Reproduce previous line word by word
     :autocmd bufenter *.tex map <F1> :!latex %<CR>
     :autocmd bufenter *.tex map <F2> :!xdvi -hush %<.dvi&<CR>
     " allow yanking of php variables with their dollar
-    :autocmd bufenter *.php :set iskeyword+=\$ 
+    :autocmd bufenter *.php :set iskeyword+=\$
 <
 --------------------------------------------------------------------------------
 Reading Ms-Word documents, requires antiword (not docx)
@@ -1249,9 +1251,9 @@ Reading Ms-Word documents, requires antiword (not docx)
 A folding method
 >
     vim: filetype=help foldmethod=marker foldmarker=<<<,>>>
-    A really big section closed with a tag <<< 
-    --- remember folds can be nested --- 
-    Closing tag >>> 
+    A really big section closed with a tag <<<
+    --- remember folds can be nested ---
+    Closing tag >>>
     ----------------------------------------
     " Return to last edit position (You want this!)
     autocmd BufReadPost *
@@ -1262,12 +1264,45 @@ A folding method
 --------------------------------------------------------------------------------
 Store text that is to be changed or deleted in register a
 >
-"act<                                 :  Change Till <
+    "act<                                 :  Change Till <
 <
---------------------------------------------------------------------------------
+================================================================================
+Exhuberant CTags hints                                  vimtips-ctags
+>
+    $ ctags.exe -R -f ..\..\vs14.tags ^
+        --file-scope=no ^
+        --totals=yes ^
+        --c++-kinds=+p ^
+        "C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\include"
+    111 files, 139601 lines (5580 kB) scanned in 1.1 seconds (5196 kB/s)
+    23661 tags added to tag file
+    23661 tags sorted in 0.22 seconds
+<
+================================================================================
+CScope hints                                            vimtips-cscope
+
+On Windows, getting cscope to actually build a legitimate cross-reference is
+pretty hard.  You have to give it a list of files like so:
+
+>
+    C:\WINDDK\2600.1106\inc>dir /s /b *.h > cscope.files
+    C:\Users\Erik\vimfiles\utils\cscope.exe ^
+        -P C:\WINDDK\2600.1106\inc ^
+        -bku -f C:\Users\Erik\vimfiles\tags\xpddk.cscope -v
+    Building cross-reference...
+    > Building symbol database 150 of 563
+<
+
+Sometimes you have to get a little creative because of things like spaces in
+names.
+
+>
+    (for /f "delims=" %f in ('dir /b /s') do @echo "%f") > C:\Windows\Temp\cscope.files
+<
+
 __END__
 ----------------------------------------
-"Read Vimtips into a new vim buffer 
+"Read Vimtips into a new vim buffer
 :silent r ! lynx -dump "http://zzapper.co.uk/vimtips.html"
 " read webpage source html into vim
 gvim http://www.zzapper.co.uk/vimtips.html &
@@ -1285,7 +1320,7 @@ comp.editors
 groups.yahoo.com/group/vim "VIM" specific newsgroup
 VIM Webring
 VimTips PDF Version (PRINTABLE!)
-Vimtips in Belarusian 
+Vimtips in Belarusian
 ----------------------------------------
 " : commands to neutralise < for HTML display and publish
 " use yy@" to execute following commands
