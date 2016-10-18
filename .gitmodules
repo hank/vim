@@ -61,3 +61,6 @@
 [submodule "bundle/showmarks"]
 	path = bundle/showmarks
 	url = https://github.com/bootleq/ShowMarks.git
+[submodule "bundle/ack"]
+	path = bundle/ack
+	url = https://github.com/mileszs/ack.vim.git

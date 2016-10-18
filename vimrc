@@ -132,3 +132,11 @@ set nocscopeverbose
 for f in split(glob("$VIMDIR/tags/*.cscope"), '\n')
     exe 'cscope add' f
 endfor
+" Ack
+" Set up ag
+if has("win16") || has("win32")
+    let g:ackprg=$VIMDIR . '\utils\ag.exe --vimgrep'
+elseif executable('ag')
+    " UNIX
+    let g:ackprg='ag --vimgrep'
+endif
